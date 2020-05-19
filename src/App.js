@@ -67,7 +67,7 @@ function App() {
             <div
               key={icon.name}
               onClick={() => {
-                const link = `${process.env.PUBLIC_URL}/${iconColor}/${icon.name}.svg`;
+                const link = `${process.env.REACT_APP_SITE_URL}/${iconColor}/${icon.name}.svg`;
                 const textarea = document.createElement("textarea");
                 textarea.value = link;
 
