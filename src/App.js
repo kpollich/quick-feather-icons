@@ -3,6 +3,17 @@ import { icons } from "feather-icons";
 
 function App() {
   const [iconColor, setIconColor] = useState("dark");
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+
+  function showToast() {
+    const visibleForMs = 2000;
+
+    setShowSuccessAlert(true);
+
+    setTimeout(() => {
+      setShowSuccessAlert(false);
+    }, visibleForMs);
+  }
 
   return (
     <div
@@ -80,6 +91,8 @@ function App() {
 
                 document.execCommand("copy");
                 document.body.removeChild(textarea);
+
+                showToast();
               }}
             >
               <h1>{icon.name}</h1>
@@ -89,6 +102,12 @@ function App() {
           );
         })}
       </div>
+
+      {showSuccessAlert && (
+        <div className="bg-green-100 border border-green-100 text-green-700 px-4 py-3 rounded fixed bottom-0 right-0 m-3">
+          Successfully Copied Link
+        </div>
+      )}
     </div>
   );
 }
