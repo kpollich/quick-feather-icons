@@ -4,6 +4,7 @@ import { icons } from "feather-icons";
 function App() {
   const [iconColor, setIconColor] = useState("dark");
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [filter, setFilter] = useState("");
 
   function showToast() {
     const visibleForMs = 2000;
@@ -17,11 +18,12 @@ function App() {
 
   return (
     <div
-      className={`w-full font-mono p-4 ${
+      className={`min-w-screen min-h-screen font-mono p-4 ${
         iconColor === "light" && "bg-gray-900 text-white"
       }`}
     >
       <h1 className="text-2xl">Quick Feather Icons</h1>
+
       <p className="mb-4">
         Quickly copy links to{" "}
         <a
@@ -70,37 +72,57 @@ function App() {
         </div>
       </div>
 
+      <div>
+        <input
+          placeholder="Filter"
+          className="border border-gray-300 text-black mb-4 pl-1 bg-white focus:outline-none focus:shadow-outline appearance-none leading-normal"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </div>
+
       <div className="grid md:grid-cols-4 md:gap-5 grid-cols-2 gap-3">
-        {Object.keys(icons).map((key) => {
-          const icon = icons[key];
+        {Object.keys(icons)
+          .filter((key) => {
+            if (!filter) {
+              return true;
+            }
 
-          return (
-            <div
-              key={icon.name}
-              onClick={() => {
-                const link = `${process.env.REACT_APP_SITE_URL}/${iconColor}/${icon.name}.svg`;
-                const textarea = document.createElement("textarea");
-                textarea.value = link;
+            return (
+              icons[key].tags.some((tag) => tag.includes(filter)) ||
+              key.includes(filter)
+            );
+          })
+          .map((key) => {
+            const icon = icons[key];
 
-                textarea.setAttribute("readonly", "");
-                textarea.style.position = "absolute";
-                textarea.style.left = "-9999px";
+            return (
+              <div
+                key={icon.name}
+                onClick={() => {
+                  const link = `${process.env.REACT_APP_SITE_URL}/${iconColor}/${icon.name}.svg`;
+                  const textarea = document.createElement("textarea");
+                  textarea.value = link;
 
-                document.body.appendChild(textarea);
-                textarea.select();
+                  textarea.setAttribute("readonly", "");
+                  textarea.style.position = "absolute";
+                  textarea.style.left = "-9999px";
 
-                document.execCommand("copy");
-                document.body.removeChild(textarea);
+                  document.body.appendChild(textarea);
+                  textarea.select();
 
-                showToast();
-              }}
-            >
-              <h1>{icon.name}</h1>
+                  document.execCommand("copy");
+                  document.body.removeChild(textarea);
 
-              <div dangerouslySetInnerHTML={{ __html: icon.toSvg() }} />
-            </div>
-          );
-        })}
+                  showToast();
+                }}
+              >
+                <h1>{icon.name}</h1>
+
+                <div dangerouslySetInnerHTML={{ __html: icon.toSvg() }} />
+              </div>
+            );
+          })}
       </div>
 
       {showSuccessAlert && (
