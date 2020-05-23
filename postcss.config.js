@@ -1,7 +1,7 @@
 const purgecss = [
   "@fullhuman/postcss-purgecss",
   {
-    content: ["./components/**/*.js", "./pages/**/*.js"],
+    content: ["src/**/*.tsx"],
     defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
   },
 ];

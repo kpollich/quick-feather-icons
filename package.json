@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "next",
+    "start": "next start",
     "build": "next build",
     "lint:fix": "eslint src --ext .ts --ext .tsx --fix",
     "lint": "eslint src --ext .ts --ext .tsx",
