@@ -53,7 +53,8 @@ function IndexPage() {
       <div>
         <label>Search: </label>
         <input
-          className="text-white mb-4 pl-1 bg-gray-600 focus:outline-none focus:shadow-outline appearance-none leading-normal"
+          type="search"
+          className="text-white mb-4 px-1 bg-gray-600 focus:outline-none focus:shadow-outline appearance-none leading-normal"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         />
