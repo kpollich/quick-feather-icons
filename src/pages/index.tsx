@@ -4,9 +4,9 @@ import { icons } from "feather-icons";
 import IconListItem from "../components/IconListItem";
 
 function IndexPage() {
-  const [iconColor, setIconColor] = useState("dark");
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [iconColor, setIconColor] = useState("");
   const [filter, setFilter] = useState("");
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   function showToast() {
     const visibleForMs = 2000;
@@ -19,11 +19,7 @@ function IndexPage() {
   }
 
   return (
-    <div
-      className={`min-w-screen min-h-screen font-mono p-4 ${
-        iconColor === "light" && "bg-gray-900 text-white"
-      }`}
-    >
+    <div className="min-w-screen min-h-screen font-mono p-4 bg-gray-900 text-white">
       <h1 className="text-2xl">Quick Feather Icons</h1>
 
       <p className="mb-4">
@@ -45,39 +41,19 @@ function IndexPage() {
       </p>
 
       <div>
-        Select Icon Color
-        <div className="mb-5">
-          <label htmlFor="dark" className="mr-3">
-            Dark
-          </label>
-          <input
-            type="radio"
-            name="icon-color"
-            id="dark"
-            value="dark"
-            checked={iconColor === "dark"}
-            onChange={(e) => setIconColor(e.target.value)}
-            className="mr-3"
-          />
-          <label htmlFor="light" className="mx-3">
-            Light
-          </label>
-          <input
-            type="radio"
-            name="icon-color"
-            id="light"
-            value="light"
-            checked={iconColor === "light"}
-            onChange={(e) => setIconColor(e.target.value)}
-            className="mr-3"
-          />
-        </div>
+        <label>Icon Color (any valid CSS color): </label>
+        <input
+          placeholder="#000"
+          className="text-white mb-4 pl-1 bg-gray-600 focus:outline-none focus:shadow-outline appearance-none leading-normal"
+          value={iconColor}
+          onChange={(e) => setIconColor(e.target.value)}
+        />
       </div>
 
       <div>
+        <label>Search: </label>
         <input
-          placeholder="Filter"
-          className="border border-gray-300 text-black mb-4 pl-1 bg-white focus:outline-none focus:shadow-outline appearance-none leading-normal"
+          className="text-white mb-4 pl-1 bg-gray-600 focus:outline-none focus:shadow-outline appearance-none leading-normal"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         />
@@ -91,8 +67,9 @@ function IndexPage() {
             }
 
             return (
-              icons[key].tags.some((tag) => tag.includes(filter)) ||
-              key.includes(filter)
+              icons[key].tags.some((tag) =>
+                tag.includes(filter.toLowerCase())
+              ) || key.includes(filter.toLowerCase())
             );
           })
           .map((key) => {

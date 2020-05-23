@@ -2,7 +2,12 @@ import React from "react";
 
 function IconListItem({ icon, iconColor, onCopy }) {
   function handleClick() {
-    const link = `${window.location.href}${iconColor}/${icon.name}.svg`;
+    const params = new URLSearchParams();
+    params.set("name", icon.name);
+    params.set("color", iconColor);
+
+    const link = `${window.location.href}api/icon?${params.toString()}`;
+
     const textarea = document.createElement("textarea");
     textarea.value = link;
 
@@ -20,10 +25,12 @@ function IconListItem({ icon, iconColor, onCopy }) {
   }
 
   return (
-    <div key={icon.name} onClick={handleClick}>
+    <div key={icon.name} onClick={handleClick} className="cursor-pointer">
       <h1>{icon.name}</h1>
 
-      <div dangerouslySetInnerHTML={{ __html: icon.toSvg() }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: icon.toSvg({ color: iconColor }) }}
+      />
     </div>
   );
 }
