@@ -2,7 +2,7 @@ import React from "react";
 
 function IconListItem({ icon, iconColor, onCopy }) {
   function handleClick() {
-    const link = `${process.env.NEXT_PUBLIC_SITE_URL}/${iconColor}/${icon.name}.svg`;
+    const link = `${window.location.href}${iconColor}/${icon.name}.svg`;
     const textarea = document.createElement("textarea");
     textarea.value = link;
 
