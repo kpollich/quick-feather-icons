@@ -4,7 +4,7 @@ function IconListItem({ icon, iconColor, onCopy }) {
   function handleClick() {
     const params = new URLSearchParams();
     params.set("name", icon.name);
-    params.set("color", iconColor);
+    params.set("color", iconColor || "#fff");
 
     const link = `${window.location.href}api/icon?${params.toString()}`;
 
