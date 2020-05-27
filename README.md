@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+  Quick Feather Icons
+  <br />
+  <img src="https://quick-feather-icons.now.sh/api/icon?name=feather&color=%23fff" />
+  </br />
+</h1>
 
-## Available Scripts
+<p align="center">
+  Quickly copy links to <a href="https://feathericons.com/">Feather icons</a> for use in Notion and anywhere else
+  <br />
+  <a href="https://quick-feather-icons.now.sh/">https://quick-feather-icons.now.sh/</a>
+</p>
 
-In the project directory, you can run:
+<img src="https://user-images.githubusercontent.com/6766512/83081606-1695d480-a04f-11ea-8472-4f091dfd7438.png" />
 
-### `yarn start`
+<img src="https://user-images.githubusercontent.com/6766512/83081550-f9610600-a04e-11ea-9339-a4c7d947df01.png" />
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Problem
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[Notion](https://www.notion.so/) allows users to provide their own icons and customize the look and feel of their notes. To do this, a user can upload an asset themself or provide a link. The official [website](https://feathericons.com/) for Feather icons is great, and it allows you to easily customize and download SVG's of all their great icons. It does not, however, provide a way to copy a unique URL for each icon. It's cumbersome to download all icons and re-upload them to Notion every time I want to use an icon, so I wanted a an easy way to copy a static link to each icon instead.
 
-### `yarn test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This is a [Next.js](https://nextjs.org/) website built with [React](https://reactjs.org/) and [Tailwind CSS](https://tailwindcss.com/).
 
-### `yarn build`
+## Installation
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the project locally, clone the repo, then install dependencies via [Yarn](https://classic.yarnpkg.com/lang/en/) - ensure you're using the "classic" version of Yarn.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```sh
+$ git clone git@github.com:kpollich/quick-feather-icons.git
+$ cd quick-feather-icons
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Install dependencies
+$ yarn
+```
 
-### `yarn eject`
+Once the installation is complete, you can run `yarn dev` to start a local development server on `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```sh
+$ yarn start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If you'd prefer not to use the frontend interface, all icons links are exposed at a predictable URL structure via an API endpoint using Next's [API routes](https://nextjs.org/docs/api-routes/introduction).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```sh
+curl 'https://quick-feather-icons.now.sh/api/icon?name=activity&color=green'
+```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+These API requests accept a valid `name` of a given Feather icon and any valid `CSS` color string. The response will contain the raw SVG string with a `Content-Type` header value of `image/svg+xml`.
