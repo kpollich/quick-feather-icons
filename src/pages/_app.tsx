@@ -2,7 +2,7 @@ import React from "react";
 import App from "next/app";
 import Head from "next/head";
 
-import "../styles/tailwind.css";
+import "../styles/index.css";
 
 class MyApp extends App {
   render() {
