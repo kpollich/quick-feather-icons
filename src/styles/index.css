@@ -1,0 +1,49 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  --background-color: #1a202c;
+  --text-color: #fff;
+}
+
+main {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: all 200ms ease;
+}
+
+.theme-dark {
+  --background-color: #1a202c;
+  --text-color: #fff;
+}
+
+.theme-dark input {
+  @apply bg-gray-600 border border-gray-700;
+}
+
+.theme-light {
+  --background-color: #f7fafc;
+  --text-color: #000;
+}
+
+.theme-light input {
+  @apply bg-gray-200 border border-gray-300;
+}
+
+input {
+  @apply appearance-none leading-normal;
+  transition: all 200ms ease;
+}
+
+input:focus {
+  @apply outline-none shadow-outline;
+}
+
+a {
+  @apply text-purple-500 underline;
+}
+
+a:hover {
+  @apply text-purple-700;
+}
