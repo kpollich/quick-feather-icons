@@ -19,7 +19,9 @@ main {
 }
 
 .theme-dark input {
-  @apply bg-gray-600 border border-gray-700;
+  @apply bg-gray-600;
+  @apply border;
+  @apply border-gray-700;
 }
 
 .theme-light {
@@ -28,20 +30,25 @@ main {
 }
 
 .theme-light input {
-  @apply bg-gray-200 border border-gray-300;
+  @apply bg-gray-200;
+  @apply border;
+  @apply border-gray-300;
 }
 
 input {
-  @apply appearance-none leading-normal;
+  @apply appearance-none;
+  @apply leading-normal;
   transition: all 200ms ease;
 }
 
 input:focus {
-  @apply outline-none shadow-outline;
+  @apply outline-none;
+  @apply shadow-outline;
 }
 
 a {
-  @apply text-purple-500 underline;
+  @apply text-purple-500;
+  @apply underline;
 }
 
 a:hover {
