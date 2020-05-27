@@ -25,8 +25,11 @@ function IconListItem({ icon, iconColor, onCopy }) {
   }
 
   return (
-    <div key={icon.name} onClick={handleClick} className="cursor-pointer">
-      <h1>{icon.name}</h1>
+    <div
+      onClick={handleClick}
+      className="cursor-pointer rounded p-1 border border-transparent hover:border-current"
+    >
+      <h3>{icon.name}</h3>
 
       <div
         dangerouslySetInnerHTML={{ __html: icon.toSvg({ color: iconColor }) }}
