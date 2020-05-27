@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { icons } from "feather-icons";
 import { Sun, Moon } from "react-feather";
 
@@ -6,9 +6,18 @@ import IconListItem from "../components/IconListItem";
 
 function IndexPage() {
   const [theme, setTheme] = useState("dark");
+  const [defaultIconColor, setDefaultIconColor] = useState<string | null>(null);
   const [iconColor, setIconColor] = useState("");
   const [filter, setFilter] = useState("");
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      setDefaultIconColor("#FFF");
+    } else {
+      setDefaultIconColor("#000");
+    }
+  }, [theme, iconColor]);
 
   const filteredIcons = Object.keys(icons)
     .filter((key) => {
@@ -82,7 +91,7 @@ function IndexPage() {
               <IconListItem
                 key={icon.name}
                 icon={icon}
-                iconColor={iconColor}
+                iconColor={iconColor ? iconColor : defaultIconColor}
                 onCopy={() => showToast()}
               />
             ))

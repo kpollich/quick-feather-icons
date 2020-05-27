@@ -1,10 +1,20 @@
 import React from "react";
+import { FeatherAttributes } from "feather-icons";
 
-function IconListItem({ icon, iconColor, onCopy }) {
+interface Props {
+  icon: {
+    name: string;
+    toSvg: (options: FeatherAttributes) => string;
+  };
+  iconColor: string;
+  onCopy: () => void;
+}
+
+const IconListItem: React.FC<Props> = ({ icon, iconColor, onCopy }) => {
   function handleClick() {
     const params = new URLSearchParams();
     params.set("name", icon.name);
-    params.set("color", iconColor || "#fff");
+    params.set("color", iconColor);
 
     const link = `${window.location.href}api/icon?${params.toString()}`;
 
@@ -36,6 +46,6 @@ function IconListItem({ icon, iconColor, onCopy }) {
       />
     </div>
   );
-}
+};
 
 export default IconListItem;
