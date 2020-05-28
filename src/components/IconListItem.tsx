@@ -1,6 +1,8 @@
 import React from "react";
 import { FeatherAttributes } from "feather-icons";
 
+import { copy } from "../utils/clipboard";
+
 interface Props {
   icon: {
     name: string;
@@ -17,19 +19,7 @@ const IconListItem: React.FC<Props> = ({ icon, iconColor, onCopy }) => {
     params.set("color", iconColor);
 
     const link = `${window.location.href}api/icon?${params.toString()}`;
-
-    const textarea = document.createElement("textarea");
-    textarea.value = link;
-
-    textarea.setAttribute("readonly", "");
-    textarea.style.position = "absolute";
-    textarea.style.left = "-9999px";
-
-    document.body.appendChild(textarea);
-    textarea.select();
-
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
+    copy(link);
 
     onCopy();
   }
