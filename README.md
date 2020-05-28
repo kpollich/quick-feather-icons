@@ -1,7 +1,7 @@
 <h1 align="center">
   Quick Feather Icons
   <br />
-  <img src="https://quick-feather-icons.now.sh/api/icon?name=feather&color=%23fff" />
+  <img src="https://quick-feather-icons.now.sh/api/icon?name=feather&color=%23000" />
   </br />
 </h1>
 
