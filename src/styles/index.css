@@ -10,7 +10,10 @@
 main {
   background-color: var(--background-color);
   color: var(--text-color);
-  transition-property: background-color, color;
+}
+
+main.with-transition {
+  transition-property: background-color;
   transition-duration: 200ms;
   transition-timing-function: ease;
 }

@@ -5,11 +5,18 @@ import { Sun, Moon } from "react-feather";
 import IconListItem from "../components/IconListItem";
 
 function IndexPage() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [theme, setTheme] = useState("dark");
   const [defaultIconColor, setDefaultIconColor] = useState<string | null>(null);
   const [iconColor, setIconColor] = useState("");
   const [filter, setFilter] = useState("");
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+
+  // Don't add transition CSS until after the page mounts - avoids weird
+  // fade-in on load
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   useEffect(() => {
     if (theme === "dark") {
@@ -43,7 +50,11 @@ function IndexPage() {
   }
 
   return (
-    <main className={`min-h-screen font-mono p-4 theme-${theme}`}>
+    <main
+      className={`min-h-screen font-mono p-4 theme-${theme} ${
+        hasMounted ? "with-transition" : ""
+      }`}
+    >
       <div className="max-w-screen-xl md:m-auto">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl">Quick Feather Icons</h1>
