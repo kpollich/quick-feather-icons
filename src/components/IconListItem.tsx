@@ -25,16 +25,16 @@ const IconListItem: React.FC<Props> = ({ icon, iconColor, onCopy }) => {
   }
 
   return (
-    <div
+    <button
       onClick={handleClick}
-      className="cursor-pointer rounded p-1 border border-transparent hover:border-current"
+      className="cursor-pointer rounded p-1 border border-transparent hover:border-current flex flex-col focus:outline-none focus:ring-1 ring-current"
     >
       <h3>{icon.name}</h3>
 
       <div
         dangerouslySetInnerHTML={{ __html: icon.toSvg({ color: iconColor }) }}
       />
-    </div>
+    </button>
   );
 };
 

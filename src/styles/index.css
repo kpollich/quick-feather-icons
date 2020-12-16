@@ -44,7 +44,7 @@ input {
 }
 
 input:focus {
-  @apply outline-none shadow-outline;
+  @apply outline-none focus:ring;
 }
 
 a {
